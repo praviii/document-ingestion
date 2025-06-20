@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id                  String      @id @default(uuid())
+  name                String
+  email               String
+  password            String
+  roleId              String      @map("role_id")
+
+  createdAt           DateTime    @default(now()) @map("created_at")
+  updatedAt           DateTime    @default(now()) @map("updated_at")
+
+  role                Role        @relation(fields: [roleId],references: [id])
+  createdDocuments    Document[]  @relation("CreatedDocuments")
+  updatedDocuments    Document[]  @relation("UpdatedDocuments")
+}
+
+model Role{
+  id          String    @id @default(uuid())
+  name        String
+  permissions String[]
+
+  createdAt   DateTime  @default(now())   @map("created_at")
+  updatedAt   DateTime  @default(now())   @map("updated_at")
+
+  user        User[]
+}
+
+model Document{
+  id    String  @id @default(uuid())
+  file  Bytes
+
+  createdAt   DateTime  @map("created_at")
+  updatedAt   DateTime  @map("updated_at")
+  createdBy   String    @map("created_by")
+  updatedBy   String    @map("updated_by")
+
+  creator     User      @relation("CreatedDocuments", fields: [createdBy], references: [id])
+  updater     User      @relation("UpdatedDocuments", fields: [updatedBy], references: [id])
+
+  ingestion   Ingestion?
+}
+
+model Ingestion{
+  id          String            @id @default(uuid())
+  content     String
+  documentId  String            @unique()         @map("document_id")
+  status      IngestionStatus
+
+  createdAt   DateTime          @default(now())   @map("created_at")
+  updatedAt   DateTime          @default(now())   @map("updated_at")
+
+  document    Document?         @relation(fields: [documentId],references: [id])
+}
+
+enum IngestionStatus{
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
