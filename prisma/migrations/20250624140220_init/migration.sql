@@ -28,6 +28,8 @@ CREATE TABLE "Role" (
 -- CreateTable
 CREATE TABLE "Document" (
     "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "mimetype" TEXT NOT NULL,
     "file" BYTEA NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL,
     "updated_at" TIMESTAMP(3) NOT NULL,
