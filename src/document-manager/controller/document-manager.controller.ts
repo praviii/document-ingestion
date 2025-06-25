@@ -1,11 +1,11 @@
-import { Controller, Post, UploadedFile, UseGuards, UseInterceptors, Req, Get, Patch, Param } from '@nestjs/common';
+import { Controller, Post, UploadedFile, UseGuards, UseInterceptors, Req, Get, Patch, Param, Request, ParseFilePipe, FileTypeValidator } from '@nestjs/common';
 import { DocumentManagerService } from '../services/document-manager.service';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-@Controller('document-manager/document')
+@Controller('document')
 @UseGuards(AuthGuard, RolesGuard)
 export class DocumentManagerController {
   constructor(private readonly documentManagerService: DocumentManagerService) { }
@@ -13,8 +13,12 @@ export class DocumentManagerController {
   @Post('upload')
   @Roles('document:create')
   @UseInterceptors(FileInterceptor('file'))
-  uploadDocument(@Req() request: Request, @UploadedFile() file: Express.Multer.File) {
-    const userId = request['user_id'];
+  uploadDocument(@Req() request: Request, @UploadedFile(new ParseFilePipe({
+    validators: [
+      new FileTypeValidator({ fileType: 'application/pdf' }),
+    ],
+  })) file: Express.Multer.File) {
+    const userId = request['user']['user_id'];
     return this.documentManagerService.uploadDocument(file, userId);
   }
 
@@ -27,8 +31,13 @@ export class DocumentManagerController {
   @Patch(':id')
   @Roles('document:update')
   @UseInterceptors(FileInterceptor('file'))
-  updateDocument(@Param('id') id: string, @UploadedFile() file: Express.Multer.File) {
-    return this.documentManagerService.updateDocument(id, file, '91121a21-6bdf-40d7-ab87-c4c9cfb1cade');
+  updateDocument(@Req() request: Request, @Param('id') id: string, @UploadedFile(new ParseFilePipe({
+    validators: [
+      new FileTypeValidator({ fileType: 'application/pdf' }),
+    ],
+  })) file: Express.Multer.File) {
+    const userId = request['user']['user_id'];
+    return this.documentManagerService.updateDocument(id, file, userId);
   }
 
 }

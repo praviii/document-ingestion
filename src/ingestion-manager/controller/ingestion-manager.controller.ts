@@ -5,7 +5,7 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
 
 UseGuards(AuthGuard, RolesGuard)
-@Controller('ingestion-manager')
+@Controller('ingestion')
 export class IngestionManagerController {
   constructor(private readonly ingestionManagerService: IngestionManagerService) { }
 
