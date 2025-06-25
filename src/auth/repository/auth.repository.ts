@@ -4,11 +4,20 @@ import { PrismaService } from "src/DB/prisma.service";
 @Injectable()
 export class AuthRepository {
 
-    constructor(private prismaSvc: PrismaService) { }
+    constructor(private readonly prismaSvc: PrismaService) { }
 
-    async login(email: string) {
+    login(email: string) {
         return this.prismaSvc.user.findFirst({
             where: { email }
+        });
+    }
+
+    getUserById(userId: string) {
+        return this.prismaSvc.user.findUnique({
+            where: { id: userId },
+            select:{
+                role:true
+            }
         });
     }
 }

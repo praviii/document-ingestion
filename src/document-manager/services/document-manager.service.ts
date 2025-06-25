@@ -13,7 +13,7 @@ export class DocumentManagerService {
     async uploadDocument(file: Express.Multer.File, userId: string): Promise<IDocument> {
         try {
             this.logger.log('[uploadDocument] Uploading document:', file.originalname, 'by user:', userId);
-            const res = await this.DocumentManagerRepo.uploadDocument(file, '91121a21-6bdf-40d7-ab87-c4c9cfb1cade');
+            const res = await this.DocumentManagerRepo.uploadDocument(file, userId);
             const document: IDocument = {
                 id: res.id,
                 name: res.name,

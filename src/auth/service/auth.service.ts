@@ -18,7 +18,10 @@ export class AuthService {
                 throw new Error("Invalid password");
             }
 
-            const payload = { email: user.email, user_id: user.id, roles: ['document:read', 'document:create', 'document:update', 'document:delete'] };
+            //getting user role details
+            const userRole = await this.authRepo.getUserById(user.id);
+
+            const payload = { email: user.email, user_id: user.id, roles: userRole?.role.permissions || [] };
             const token = this.jwtSvc.sign(payload);
 
             return { access_token: token, user: { email: user.email, id: user.id } };
