@@ -1,6 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserDto } from '../dto/create-user-management.dto';
-import { UpdateUserManagementDto } from '../dto/update-user-management.dto';
 import { UserManagementRepository } from '../repository/user-management.repository';
 import * as bcrypt from 'bcrypt';
 import { User } from '../model/user.model';
@@ -9,7 +8,7 @@ import { User } from '../model/user.model';
 export class UserManagementService {
 
   logger = new Logger(UserManagementService.name);
-  constructor(private userManagementRepoSvc: UserManagementRepository) { }
+  constructor(private readonly userManagementRepoSvc: UserManagementRepository) { }
 
   async createUser(userData: CreateUserDto) {
   this.logger.log('Creating user with data: ' + JSON.stringify(userData));

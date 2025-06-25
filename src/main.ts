@@ -9,7 +9,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Document ingestion')
-    .setDescription('Document ingetsion description')
+    .setDescription('Document ingestion description')
     .setVersion('1.0')
     .build();
 

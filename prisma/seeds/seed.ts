@@ -12,7 +12,11 @@ async function main() {
                 'document:read',
                 'document:create',
                 'document:update',
-                'document:delete'
+                'document:delete',
+                'ingestion:read',
+                'ingestion:create',
+                'ingestion:update',
+                'ingestion:delete',
             ],
             createdAt: new Date(),
             updatedAt: new Date(),

@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller,Post, Body } from '@nestjs/common';
 import { UserManagementService } from '../service/user-management.service';
 import { CreateUserDto } from '../dto/create-user-management.dto';
-import { UpdateUserManagementDto } from '../dto/update-user-management.dto';
 import { successResponse } from 'src/common/helpers/response.helper';
 import { ApiResponse } from 'src/common/dto/api-response.dto';
 import { User } from '../model/user.model';

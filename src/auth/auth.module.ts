@@ -21,4 +21,4 @@ import { PrismaService } from "src/DB/prisma.service";
     ],
 })
 
-export class Authmodule { }
+export class AuthModule { }

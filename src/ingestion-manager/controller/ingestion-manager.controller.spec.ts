@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { IngestionManagerController } from './ingestion-manager.controller';
-import { IngestionManagerService } from './ingestion-manager.service';
+import { IngestionManagerService } from '../service/ingestion-manager.service';
 
 describe('IngestionManagerController', () => {
   let controller: IngestionManagerController;
