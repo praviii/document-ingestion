@@ -9,7 +9,7 @@ import { User } from '../model/user.model';
 export class UserManagementController {
   constructor(private readonly userManagementService: UserManagementService) { }
 
-  @Post()
+  @Post('/register')
   async createUser(@Body() data: CreateUserDto): Promise<ApiResponse<User>> {
     const res = await this.userManagementService.createUser(data);
     return successResponse(res, 'User created successfully');

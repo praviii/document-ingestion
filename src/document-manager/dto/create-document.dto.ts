@@ -1,5 +1,7 @@
 import { File } from "buffer";
+import { IsNotEmpty } from "class-validator";
 
-export interface CreateDocumentDto {
+export class CreateDocumentDto {
+    @IsNotEmpty()
     file : File;
 }
