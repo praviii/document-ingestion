@@ -2,7 +2,7 @@
 
 # NestJS Backend – User & Document Management System
 
-A backend service built with **NestJS** to manage user authentication, document management, and ingestion controls. Designed with clean architecture, role-based access control (RBAC), and integration-ready endpoints to communicate with a Python ingestion service.
+A backend service built with **NestJS** to manage user authentication, document management, and ingestion controls. Designed with clean architecture, role-based access control (RBAC), and integration-ready endpoints.
 
 ---
 
