@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "8b6ce95d-1a25-4a16-bd04-6beeb1adda64",
+		"name": "Document ingestion Apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "44276887",
+		"_collection_link": "https://praveen-3864862.postman.co/workspace/praveen's-Workspace~476544df-2b0f-4668-8282-c7461592761a/collection/44276887-8b6ce95d-1a25-4a16-bd04-6beeb1adda64?action=share&source=collection_link&creator=44276887"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Admin\",\r\n    \"email\":\"Admin@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"roleId\":\"b976f3c4-5551-4a23-82fd-23138abf5da2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/user/register"
+			},
+			"response": []
+		},
+		{
+			"name": "getusers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Admin\",\r\n    \"email\":\"Admin@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"roleId\":\"b976f3c4-5551-4a23-82fd-23138abf5da2\"\r\n}"
+				},
+				"url": "http://localhost:3000/user/all"
+			},
+			"response": []
+		},
+		{
+			"name": "user/id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Admin\",\r\n    \"email\":\"Admin@gmail.com\",\r\n    \"password\":\"1234\",\r\n    \"roleId\":\"b976f3c4-5551-4a23-82fd-23138abf5da2\"\r\n}"
+				},
+				"url": "http://localhost:3000/user/273533a9-2bbe-4879-8833-df01cc9f72eb"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"Admin@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "upload document",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOiIyNzM1MzNhOS0yYmJlLTQ4NzktODgzMy1kZjAxY2M5ZjcyZWIiLCJyb2xlcyI6WyJkb2N1bWVudDpyZWFkIiwiZG9jdW1lbnQ6Y3JlYXRlIiwiZG9jdW1lbnQ6dXBkYXRlIiwiZG9jdW1lbnQ6ZGVsZXRlIiwiaW5nZXN0aW9uOnJlYWQiLCJpbmdlc3Rpb246Y3JlYXRlIiwiaW5nZXN0aW9uOnVwZGF0ZSIsImluZ2VzdGlvbjpkZWxldGUiLCJ1c2VyOnJlYWQiLCJ1c2VyOmNyZWF0ZSIsInVzZXI6dXBkYXRlIiwidXNlcjpkZWxldGUiXSwiaWF0IjoxNzUwOTQ4NTE1LCJleHAiOjE3NTA5NTIxMTV9.-kfV8YbRlh8ur2B98WfBCZcH6156lKQcnqS_QX-Nv_E"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Prave/Downloads/sample-local-pdf.pdf"
+						}
+					]
+				},
+				"url": "http://localhost:3000/document/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "getDocument",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOiIyNzM1MzNhOS0yYmJlLTQ4NzktODgzMy1kZjAxY2M5ZjcyZWIiLCJyb2xlcyI6WyJkb2N1bWVudDpyZWFkIiwiZG9jdW1lbnQ6Y3JlYXRlIiwiZG9jdW1lbnQ6dXBkYXRlIiwiZG9jdW1lbnQ6ZGVsZXRlIiwiaW5nZXN0aW9uOnJlYWQiLCJpbmdlc3Rpb246Y3JlYXRlIiwiaW5nZXN0aW9uOnVwZGF0ZSIsImluZ2VzdGlvbjpkZWxldGUiLCJ1c2VyOnJlYWQiLCJ1c2VyOmNyZWF0ZSIsInVzZXI6dXBkYXRlIiwidXNlcjpkZWxldGUiXSwiaWF0IjoxNzUwOTQ4NTE1LCJleHAiOjE3NTA5NTIxMTV9.-kfV8YbRlh8ur2B98WfBCZcH6156lKQcnqS_QX-Nv_E"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/document/041fee52-7700-48a4-893b-a176a7a5f5ad"
+			},
+			"response": []
+		},
+		{
+			"name": "get ingestion conetent and id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkFkbWluQGdtYWlsLmNvbSIsInVzZXJfaWQiOiIyNzM1MzNhOS0yYmJlLTQ4NzktODgzMy1kZjAxY2M5ZjcyZWIiLCJyb2xlcyI6WyJkb2N1bWVudDpyZWFkIiwiZG9jdW1lbnQ6Y3JlYXRlIiwiZG9jdW1lbnQ6dXBkYXRlIiwiZG9jdW1lbnQ6ZGVsZXRlIiwiaW5nZXN0aW9uOnJlYWQiLCJpbmdlc3Rpb246Y3JlYXRlIiwiaW5nZXN0aW9uOnVwZGF0ZSIsImluZ2VzdGlvbjpkZWxldGUiLCJ1c2VyOnJlYWQiLCJ1c2VyOmNyZWF0ZSIsInVzZXI6dXBkYXRlIiwidXNlcjpkZWxldGUiXSwiaWF0IjoxNzUwOTQ4NTE1LCJleHAiOjE3NTA5NTIxMTV9.-kfV8YbRlh8ur2B98WfBCZcH6156lKQcnqS_QX-Nv_E"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/ingestion/5e201607-6bcc-4b6a-9723-16d509c1f4de"
+			},
+			"response": []
+		}
+	]
+}

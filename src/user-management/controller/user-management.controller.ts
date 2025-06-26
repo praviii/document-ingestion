@@ -1,4 +1,4 @@
-import { Controller,Post, Body, Get } from '@nestjs/common';
+import { Controller,Post, Body, Get, Param } from '@nestjs/common';
 import { UserManagementService } from '../service/user-management.service';
 import { CreateUserDto } from '../dto/create-user-management.dto';
 import { successResponse } from 'src/common/helpers/response.helper';
@@ -9,6 +9,8 @@ import { User } from '../model/user.model';
 export class UserManagementController {
   constructor(private readonly userManagementService: UserManagementService) { }
 
+  // This end point should be moved to public module
+  // That's why guards have not been added to this controller.
   @Post('/register')
   async createUser(@Body() data: CreateUserDto): Promise<ApiResponse<User>> {
     const res = await this.userManagementService.createUser(data);
@@ -22,7 +24,7 @@ export class UserManagementController {
   }
 
   @Get(':id')
-  async getUserById(@Body('id') id: string): Promise<ApiResponse<User>> {
+  async getUserById(@Param('id') id: string): Promise<ApiResponse<User>> {
     const res = await this.userManagementService.getUserById(id);
     return successResponse(res, 'User retrieved successfully');
   }

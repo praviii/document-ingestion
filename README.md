@@ -74,6 +74,8 @@ npm run start:dev
 | Method | Endpoint | Description |
 | --- | --- | --- |
 | POST | `/user/register` | Register a user |
+| GET | `/user/all` | get all users |
+| GET | `/user/id` | get user by id |
 | POST | `/auth/login` | Login with JWT |
 
 🧾 User Creation Note
@@ -92,15 +94,13 @@ viewerRoleId: ``c56db4c0-1350-493a-a2d9-dc091d2c3019``
 
 ``` json
 {
-  "name": "John Doe",
-  "email": "john@example.com",
+  "name": "Admin",
+  "email": "admin@example.com",
   "password": "securePassword123",
   "roleId": "adminRoleId"
 }
 ```
-
 If you're not sure which role ID to use, check your database or the role seeding logic.
-
 
 
 ### 📄 Document APIs
