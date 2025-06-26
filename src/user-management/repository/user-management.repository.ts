@@ -1,11 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { PrismaClient } from "@prisma/client";
-import { PrismaService } from "src/DB/prisma.service";
+import { PrismaService } from "../../DB/prisma.service";
 import { CreateUserDto } from "../dto/create-user-management.dto";
 
 @Injectable()
 export class UserManagementRepository {
-    constructor(private prismaSvc: PrismaService) { }
+    constructor(private readonly prismaSvc: PrismaService) { }
     
     createUser(userData: CreateUserDto) {
         return this.prismaSvc.user.create({
@@ -16,5 +15,36 @@ export class UserManagementRepository {
                 roleId: userData.roleId,
             }
         })
+    }
+
+    getAllUsers() {
+        return this.prismaSvc.user.findMany({
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role:{
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
+    }
+
+    getUserById(id: string) {
+        return this.prismaSvc.user.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
     }
 }

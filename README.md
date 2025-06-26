@@ -76,6 +76,33 @@ npm run start:dev
 | POST | `/user/register` | Register a user |
 | POST | `/auth/login` | Login with JWT |
 
+🧾 User Creation Note
+
+When creating a user via the /register API, two roles are already pre-configured:
+- Admin
+- Viewer
+
+Please provide a valid role ID when creating a user. You can use one of the following role IDs:
+
+adminRoleId: ``b976f3c4-5551-4a23-82fd-23138abf5da2``
+
+viewerRoleId: ``c56db4c0-1350-493a-a2d9-dc091d2c3019``
+
+📌 Replace the role ID in your request body like so:
+
+``` json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "securePassword123",
+  "roleId": "adminRoleId"
+}
+```
+
+If you're not sure which role ID to use, check your database or the role seeding logic.
+
+
+
 ### 📄 Document APIs
 
 | Method | Endpoint | Description |
