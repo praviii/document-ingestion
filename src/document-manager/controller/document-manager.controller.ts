@@ -4,6 +4,7 @@ import { AuthGuard } from 'src/common/guards/auth.guard';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiBody, ApiConsumes } from '@nestjs/swagger';
 
 @Controller('document')
 @UseGuards(AuthGuard, RolesGuard)
@@ -13,6 +14,18 @@ export class DocumentManagerController {
   @Post('upload')
   @Roles('document:create')
   @UseInterceptors(FileInterceptor('file'))
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
   uploadDocument(@Req() request: Request, @UploadedFile(new ParseFilePipe({
     validators: [
       new FileTypeValidator({ fileType: 'application/pdf' }),
