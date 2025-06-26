@@ -10,7 +10,6 @@ export class AuthService {
     async login(email: string, password: string) {
         const user = await this.authRepo.login(email);
 
-
         if (user) {
             const isValid = bcrypt.compareSync(password, user.password);
 
